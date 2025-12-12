@@ -144,7 +144,7 @@ int main() {
         cout << "Served Customer: " << served.name << ", Drink: " << served.drink << endl;
         totalServed++;
     }  
-     
+
     cout << "Queue after serving one customer:" << endl;
     queue.printQueue();     
 
@@ -168,6 +168,26 @@ int main() {
         }else {
             cout << "No new customer arrived." << endl;
         }
+
+        if (!braceletQueue.empty()) {
+        cout << "Bracelet Booth Served: "
+             << braceletQueue.front().name
+              << ", Bracelet: " << braceletQueue.front().bracelet << endl;
+            braceletQueue.erase(braceletQueue.begin());
+        }
+        else {
+            cout << "Bracelet Booth: No customer to serve." << endl;
+        }
+
+        if (fiftyPercentChance()) {
+            BraceletCustomer bc = randomBraceletCustomer();
+            braceletQueue.push_back(bc);
+            cout << "Bracelet Customer Arrived: "
+                 << bc.name << ", Bracelet: " << bc.bracelet << endl;
+        } else {
+            cout << "No bracelet customer arrived this round." << endl;
+        }
+
 
         int currentQueueSize = queue.getSize();
         if (currentQueueSize > maxQueueSize) {
