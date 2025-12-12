@@ -100,6 +100,11 @@ int main() {
     srand(time(nullptr));
     LinkedListQueue queue;
 
+    int totalServed = 0;
+    int totalArrived = 0;
+    int maxQueueSize = 0;
+
+
     queue.enqueue(randomCustomer());
     queue.enqueue(randomCustomer());
     queue.enqueue(randomCustomer());
@@ -122,15 +127,25 @@ int main() {
         if (queue.dequeue(served2)) {
             cout << "Served Customer: " << served2.name << ", Drink: " << served2.drink << endl;
         } else {
-            cout << "No customer to serve." << endl;
+            cout << "No customer to served." << endl;
         }
 
         if (fiftyPercentChance()){
             Customer newcustomer = randomCustomer();
             queue.enqueue(newcustomer);
             cout << "New Customer Arrived: " << newcustomer.name << ", Drink: " << newcustomer.drink << endl;
+        totalArrived++;
+        }else {
+            cout << "No new customer arrived." << endl;
         }
-
+        //Track max queue size
+        int currentQueueSize = 0;
+        Node* temp = queue.head;
+        while (temp != nullptr) {
+            currentQueueSize++;
+            temp = temp->next;
+        }
+        
         cout << "Queue Status:" << endl;
         queue.printQueue();
     }
