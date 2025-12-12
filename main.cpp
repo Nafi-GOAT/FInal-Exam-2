@@ -86,6 +86,11 @@ public:
    }
 };
 
+struct BraceletCustomer {
+    string name;
+    string bracelet;
+};
+
 vector<string> names = {
     "Nafi","Mehraj","Tracy","Drew","Evan","Finley","Grace","Harper"
 };
@@ -94,10 +99,21 @@ vector<string> drinks = {
     "Latte","Espresso","Mocha","Cappuccino","Americano","Chai"
 };
 
+vector<string> bracelets = {
+    "Beaded","Charm","Glow","Friendship","Woven"
+};
+
 Customer randomCustomer() {
     Customer c;
     c.name = names[rand() % names.size()];
     c.drink = drinks[rand() % drinks.size()];
+    return c;
+}
+
+BraceletCustomer randomBraceletCustomer() {
+    BraceletCustomer c;
+    c.name = names[rand() % names.size()];
+    c.bracelet = bracelets[rand() % bracelets.size()];
     return c;
 }
 
@@ -108,6 +124,8 @@ bool fiftyPercentChance() {
 int main() {
     srand(time(nullptr));
     LinkedListQueue queue;
+
+    vector<BraceletCustomer> braceletQueue;
 
     int totalServed = 0;
     int totalArrived = 3;
@@ -125,7 +143,8 @@ int main() {
     if (queue.dequeue(served)) {
         cout << "Served Customer: " << served.name << ", Drink: " << served.drink << endl;
         totalServed++;
-    }   
+    }  
+     
     cout << "Queue after serving one customer:" << endl;
     queue.printQueue();     
 
@@ -149,7 +168,7 @@ int main() {
         }else {
             cout << "No new customer arrived." << endl;
         }
-        
+
         int currentQueueSize = queue.getSize();
         if (currentQueueSize > maxQueueSize) {
             maxQueueSize = currentQueueSize;
