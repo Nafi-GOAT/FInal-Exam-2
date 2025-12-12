@@ -91,6 +91,11 @@ struct BraceletCustomer {
     string bracelet;
 };
 
+struct PosterCustomer {
+    string name;
+    string poster;
+};
+
 vector<string> names = {
     "Nafi","Mehraj","Tracy","Drew","Evan","Finley","Grace","Harper"
 };
@@ -101,6 +106,10 @@ vector<string> drinks = {
 
 vector<string> bracelets = {
     "Beaded","Charm","Glow","Friendship","Woven"
+};
+
+vector<string> posters = {
+    "Anime Poster","Car Poster","Space Poster","Nature Poster","Sports Poster"
 };
 
 Customer randomCustomer() {
@@ -117,6 +126,13 @@ BraceletCustomer randomBraceletCustomer() {
     return c;
 }
 
+PosterCustomer randomPosterCustomer() {
+    PosterCustomer c;
+    c.name = names[rand() % names.size()];
+    c.poster = posters[rand() % posters.size()];
+    return c;
+}
+
 bool fiftyPercentChance() {
     return rand() % 2 == 0;
 }
@@ -124,8 +140,8 @@ bool fiftyPercentChance() {
 int main() {
     srand(time(nullptr));
     LinkedListQueue queue;
-
     vector<BraceletCustomer> braceletQueue;
+    stack<PosterCustomer> posterStack;
 
     int totalServed = 0;
     int totalArrived = 3;
