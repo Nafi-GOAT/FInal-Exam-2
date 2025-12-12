@@ -204,6 +204,23 @@ int main() {
             cout << "No bracelet customer arrived this round." << endl;
         }
 
+        if (!posterStack.empty()) {
+            cout << "Poster Booth Served: "
+            << posterStack.top().name
+            << ", Poster: " << posterStack.top().poster << endl;
+            posterStack.pop();
+        }else {
+            cout << "Poster Booth: No customer to serve." << endl;
+        }
+
+        if (fiftyPercentChance()) {
+            PosterCustomer pc = randomPosterCustomer();
+            posterStack.pop();
+            cout << "Poster Customer Arrived: "
+                 << pc.name << ", Poster: " << pc.poster << endl;
+        } else {
+            cout << "No poster customer arrived this round." << endl;
+        }
 
         int currentQueueSize = queue.getSize();
         if (currentQueueSize > maxQueueSize) {
