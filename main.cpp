@@ -101,7 +101,7 @@ int main() {
     LinkedListQueue queue;
 
     int totalServed = 0;
-    int totalArrived = 0;
+    int totalArrived = 3;
     int maxQueueSize = 0;
 
 
@@ -115,6 +115,7 @@ int main() {
     Customer served;
     if (queue.dequeue(served)) {
         cout << "Served Customer: " << served.name << ", Drink: " << served.drink << endl;
+        totalServed++;
     }   
     cout << "Queue after serving one customer:" << endl;
     queue.printQueue();     
@@ -126,8 +127,9 @@ int main() {
         Customer served2;
         if (queue.dequeue(served2)) {
             cout << "Served Customer: " << served2.name << ", Drink: " << served2.drink << endl;
+            totalServed++;
         } else {
-            cout << "No customer to served." << endl;
+            cout << "No customer to serve." << endl;
         }
 
         if (fiftyPercentChance()){
@@ -145,10 +147,20 @@ int main() {
             currentQueueSize++;
             temp = temp->next;
         }
-        
+
+        if (currentQueueSize > maxQueueSize) {
+            maxQueueSize = currentQueueSize;
+        }
+
         cout << "Queue Status:" << endl;
         queue.printQueue();
     }
+
+    cout << "----Simulation Summary----" << endl;
+    cout << "Total Customers Arrived: " << totalArrived << endl;
+    cout << "Total Customers Served: " << totalServed << endl;
+    cout << "Maximum Queue Size: " << maxQueueSize << endl;
+
     return 0;
 }
 
