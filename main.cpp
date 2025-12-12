@@ -233,8 +233,34 @@ int main() {
             maxQueueSize = currentQueueSize;
         }
 
-        cout << "Queue Status:" << endl;
+        cout << "\n-----Queue Activity for All Booths-----" << endl;
+
+
+        cout << "Coffee Booth Queue:" << endl;
         queue.printQueue();
+
+        cout << "Bracelet Booth Queue:" << endl;
+        if (braceletQueue.empty()) {
+            cout  << "(empty)" << endl;
+        } else {
+            for (const auto& bc : braceletQueue) {
+                cout << "Customer: " << bc.name << ", Bracelet: " << bc.bracelet << endl;
+            }
+    }
+
+        cout << "Poster Booth Stack:" << endl;
+        if (posterStack.empty()) {
+            cout << "(empty)" << endl;
+        } else {
+            stack<PosterCustomer> tempStack = posterStack;
+            while (!tempStack.empty()) {
+                PosterCustomer pc = tempStack.top();
+                cout << "Customer: " << pc.name << ", Poster: " << pc.poster << endl;
+                tempStack.pop();
+            }
+        }
+
+        cout << "-------------------------------" << endl;
     }
 
     cout << "----Simulation Summary----" << endl;
