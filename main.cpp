@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <cstdlib>
+#include <stack>
 #include <ctime>
 using namespace std;
 
@@ -146,6 +147,11 @@ int main() {
     int totalServed = 0;
     int totalArrived = 3;
     int maxQueueSize = 0;
+   
+    int braceletArrived = 0;  
+    int braceletServed = 0;
+    int posterServed = 0;     
+    int posterArrived = 0;
 
 
     queue.enqueue(randomCustomer());
@@ -215,7 +221,7 @@ int main() {
 
         if (fiftyPercentChance()) {
             PosterCustomer pc = randomPosterCustomer();
-            posterStack.pop();
+            posterStack.push(pc);
             cout << "Poster Customer Arrived: "
                  << pc.name << ", Poster: " << pc.poster << endl;
         } else {
