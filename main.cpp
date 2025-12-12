@@ -75,6 +75,15 @@ public:
         }
         cout << endl;
     }
+        int getSize() const {
+        int count = 0;
+        Node* temp = head;
+        while (temp != nullptr) {
+           count++;
+            temp = temp->next;
+    }
+    return count;
+   }
 };
 
 vector<string> names = {
@@ -140,14 +149,8 @@ int main() {
         }else {
             cout << "No new customer arrived." << endl;
         }
-        //Track max queue size
-        int currentQueueSize = 0;
-        Node* temp = queue.head;
-        while (temp != nullptr) {
-            currentQueueSize++;
-            temp = temp->next;
-        }
-
+}
+         int currentQueueSize = queue.getSize();
         if (currentQueueSize > maxQueueSize) {
             maxQueueSize = currentQueueSize;
         }
