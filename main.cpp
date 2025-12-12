@@ -52,9 +52,10 @@ public:
         out = head->data;
         head = head->next;
        
-        if (head == nullptr) 
+        if (head == nullptr) {
             tail = nullptr;
             delete temp;
+        }
         
         return true;
     }
@@ -66,9 +67,10 @@ public:
         }
 
         Node* current = head;
-        While (current != nullptr) {
+        while (current != nullptr) {
             cout << "Customer: " << current->data.name << ", Drink: " << current->data.drink << endl;
-            if (cur->next) cout << " <- ";
+            if (current->next)
+                cout << "";
             current = current->next;
         }
         cout << endl;
@@ -88,6 +90,26 @@ Customer randomCustomer() {
     c.name = names[rand() % names.size()];
     c.drink = drinks[rand() % drinks.size()];
     return c;
+}
+
+int main() {
+    srand(time(nullptr));
+    LinkedListQueue queue;
+
+    queue.enqueue(randomCustomer());
+    queue.enqueue(randomCustomer());
+    queue.enqueue(randomCustomer());
+
+    cout << "Current Queue:" << endl;
+    queue.printQueue();
+
+    Customer served;
+    if (queue.dequeue(served)) {
+        cout << "Served Customer: " << served.name << ", Drink: " << served.drink << endl;
+    }   
+    cout << "Queue after serving one customer:" << endl;
+    queue.printQueue();     
+    return 0;
 }
 
 
