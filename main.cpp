@@ -54,9 +54,9 @@ public:
        
         if (head == nullptr) {
             tail = nullptr;
-            delete temp;
         }
-        
+
+        delete temp;
         return true;
     }
 
@@ -92,6 +92,10 @@ Customer randomCustomer() {
     return c;
 }
 
+bool fiftyPercentChance() {
+    return rand() % 2 == 0;
+}
+
 int main() {
     srand(time(nullptr));
     LinkedListQueue queue;
@@ -109,6 +113,35 @@ int main() {
     }   
     cout << "Queue after serving one customer:" << endl;
     queue.printQueue();     
+
+    cout << " 10 round simulation starts now! " << endl;
+    for (int round = 1; round <= 10; ++round) {
+        cout << "Round " << round << ":" << endl;
+
+        Customer served2;
+        if (queue.dequeue(served2)) {
+            cout << "Served Customer: " << served2.name << ", Drink: " << served2.drink << endl;
+        } else {
+            cout << "No customer to serve." << endl;
+        }
+
+        if (fiftyPercentChance()) {
+            Customer newCustomer = randomCustomer();
+            queue.enqueue(newCustomer);
+            cout << "New Customer Arrived: " << newCustomer.name << ", Drink: " << newCustomer.drink << endl;
+        } else {
+            cout << "No new customer served." << endl;
+        }
+
+        if (fiftyPercentChance()){
+            Customer newcustomer = randomCustomer();
+            queue.enqueue(newcustomer);
+            cout << "New Customer Arrived: " << newcustomer.name << ", Drink: " << newcustomer.drink << endl;
+        }
+
+        cout << "Queue Status:" << endl;
+        queue.printQueue();
+    }
     return 0;
 }
 
