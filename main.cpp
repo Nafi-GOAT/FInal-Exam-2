@@ -125,14 +125,6 @@ int main() {
             cout << "No customer to serve." << endl;
         }
 
-        if (fiftyPercentChance()) {
-            Customer newCustomer = randomCustomer();
-            queue.enqueue(newCustomer);
-            cout << "New Customer Arrived: " << newCustomer.name << ", Drink: " << newCustomer.drink << endl;
-        } else {
-            cout << "No new customer served." << endl;
-        }
-
         if (fiftyPercentChance()){
             Customer newcustomer = randomCustomer();
             queue.enqueue(newcustomer);
