@@ -149,8 +149,8 @@ int main() {
         }else {
             cout << "No new customer arrived." << endl;
         }
-}
-         int currentQueueSize = queue.getSize();
+        
+        int currentQueueSize = queue.getSize();
         if (currentQueueSize > maxQueueSize) {
             maxQueueSize = currentQueueSize;
         }
